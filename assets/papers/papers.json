@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Understanding and Improving Hyperbolic Deep Reinforcement Learning",
+    "title_url": "https://github.com/Probabilistic-and-Interactive-ML/hyper-rl",
+    "authors": "T. Klein*, T. Lang*, <span class=\"me\">A. Shkabrii</span>, A. Sturm, K. Sidak, L. Miklautz, C. Plant, Y. Velaj, S. Tschiatschek",
+    "venue": "International Conference on Learning Representations (ICLR), 2026",
+    "thumb": "assets/papers/hyperbolic.png",
+    "links": {
+      "paper": "https://openreview.net/pdf?id=7rfdenlP1L",
+      "code": "https://github.com/Probabilistic-and-Interactive-ML/hyper-rl",
+      "poster": "",
+      "slides": "",
+      "video": ""
+    }
+  },
+  {
+    "title": "H-SPLID: HSIC-based Saliency Preserving Latent Information Decomposition",
+    "title_url": "https://neurips.cc/virtual/2025/poster/120286",
+    "authors": "L. Miklautz*, C. Shi*, <span class=\"me\">A. Shkabrii</span>*, T. T. Davarakis, P. Lam, C. Plant, J. Dy, S. Ioannidis",
+    "venue": "Conference on Neural Information Processing Systems (NeurIPS), 2025",
+    "thumb": "assets/papers/hsplid.png",
+    "links": {
+      "paper": "https://arxiv.org/abs/2510.20627",
+      "code": "https://github.com/neu-spiral/H-SPLID",
+      "poster": "https://neurips.cc/media/PosterPDFs/NeurIPS%202025/120286.png",
+      "slides": "https://slideslive.com/39050056",
+      "video": "https://slideslive.com/39050056"
+    }
+  },
+  {
+    "title": "Breaking the Reclustering Barrier in Centroid-based Deep Clustering",
+    "title_url": "https://iclr.cc/virtual/2025/poster/28226",
+    "authors": "L. Miklautz*, T. Klein*, K. Sidak*, C. Leiber, T. Lang, <span class=\"me\">A. Shkabrii</span>, S. Tschiatschek, C. Plant",
+    "venue": "International Conference on Learning Representations (ICLR), 2025",
+    "thumb": "assets/papers/brb.png",
+    "links": {
+      "paper": "https://openreview.net/pdf?id=r01fcKhzT5",
+      "code": "https://github.com/Probabilistic-and-Interactive-ML/breaking-the-reclustering-barrier",
+      "poster": "https://iclr.cc/media/PosterPDFs/ICLR%202025/28226.png?t=1744206577.557315",
+      "slides": "https://iclr.cc/media/iclr-2025/Slides/28226.pdf",
+      "video": "https://slideslive.com/39034285"
+    }
+  },
+  {
+    "title": "ReSL: Enhancing Deep Clustering Through Reset-based Self-Labeling",
+    "title_url": "https://openreview.net/pdf?id=5nweoGtulA",
+    "authors": "<span class=\"me\">A. Shkabrii</span>, T. Klein, L. Miklautz, S. Tschiatschek, C. Plant",
+    "venue": "Workshop on Spurious Correlation and Shortcut Learning (SCSL) and Workshop on Scaling Self-Improving Foundation Models (SSI-FM) @ International Conference on Learning Representations (ICLR), 2025",
+    "thumb": "assets/papers/resl.png",
+    "links": {
+      "paper": "https://openreview.net/pdf?id=5nweoGtulA",
+      "code": "",
+      "poster": "",
+      "slides": "",
+      "video": ""
+    }
+  },
+  {
+    "title": "Non-Redundant Image Clustering of Early Medieval Glass Beads",
+    "title_url": "https://ieeexplore.ieee.org/document/10302468",
+    "authors": "L. Miklautz, <span class=\"me\">A. Shkabrii</span>, C. Leiber, B. Tobias, B. Seidl, E. Weissensteiner, A. Rausch, C. B&ouml;hm, C. Plant",
+    "venue": "IEEE International Conference on Data Science and Advanced Analytics (DSAA), 2023",
+    "thumb": "assets/papers/glassbeads.png",
+    "links": {
+      "paper": "https://ieeexplore.ieee.org/document/10302468",
+      "code": "",
+      "poster": "",
+      "slides": "",
+      "video": ""
+    }
+  }
+]

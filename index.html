@@ -299,9 +299,6 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
   color: var(--text-light);
   line-height: 1.55;
 }
-@media (max-width: 860px) {
-  .research-item { width: 100%; }
-}
 
 /* ────── PUBLICATIONS ────── */
 .pub-list {}
@@ -399,10 +396,6 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
 }
 .news-body { font-size: 0.92rem; color: var(--text); line-height: 1.6; }
 .news-body a { color: var(--primary); }
-@media (max-width: 860px) {
-  .news-item { flex-direction: column; gap: 2px; }
-  .news-date { width: auto; }
-}
 
 /* ────── CONTACT ────── */
 .contact-list { list-style: none; }
@@ -433,15 +426,34 @@ footer a:hover { color: var(--primary); }
 
 /* ────── RESPONSIVE ────── */
 @media (max-width: 860px) {
-  .about-widget { flex-direction: column; gap: 24px; align-items: center; text-align: center; }
-  .about-avatar { width: auto; }
-  .about-avatar .avatar { width: 200px; height: 200px; font-size: 3.5rem; }
-  .about-columns { flex-direction: column; gap: 20px; }
-  .about-col li, .about-col .edu-item { justify-content: center; }
+  .page-body { padding: 60px 16px 40px; }
+
+  .about-widget {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 24px 0 30px;
+  }
+  .about-avatar { width: 100%; text-align: center; }
+  .about-avatar .avatar { width: 170px; height: 170px; margin: 0 auto 14px; }
+
+  .about-text { padding-top: 0; width: 100%; text-align: left; }
+  .about-text h1 { font-size: 1.5rem; margin-bottom: 12px; text-align: center; }
+  .about-text p,
+  .research-item p,
+  .news-body,
+  #contact > p { text-align: justify; hyphens: auto; }
+  .about-text p { font-size: 0.95rem; }
+  .cv-link { text-align: center; }
+
+  .about-columns { flex-direction: column; gap: 18px; margin-top: 20px; }
+  .about-col h3 { text-align: center; }
+
   .navbar-nav { display: none; }
   .navbar-nav.open {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     position: absolute;
     top: 50px; left: 0; right: 0;
     background: var(--nav-bg);
@@ -449,10 +461,30 @@ footer a:hover { color: var(--primary); }
     padding: 8px 16px;
     gap: 2px;
   }
+  .navbar-nav.open a { padding: 10px 12px; }
   .mobile-toggle { display: block; }
-  .project-grid { grid-template-columns: 1fr; }
-  .pub-entry { flex-direction: column; }
-  .pub-entry-thumb { width: 100%; height: 120px; }
+
+  .home-section { padding: 30px 0; }
+  .section-heading { font-size: 1.35rem; }
+
+  .research-item { width: 100%; }
+
+  .pub-entry { flex-direction: column; gap: 12px; }
+  .pub-entry-thumb { width: 100%; height: 160px; }
+  .pub-authors, .pub-venue { overflow-wrap: anywhere; }
+  .pub-links { gap: 6px; }
+
+  .news-item { flex-direction: column; gap: 4px; }
+  .news-date { width: auto; }
+
+  footer { padding: 20px 16px; }
+}
+
+@media (max-width: 480px) {
+  .about-avatar .avatar { width: 150px; height: 150px; }
+  .about-text h1 { font-size: 1.35rem; }
+  .section-heading { font-size: 1.25rem; }
+  .pub-entry-thumb { height: 130px; }
 }
 </style>
 </head>
@@ -581,89 +613,13 @@ footer a:hover { color: var(--primary); }
     <h2 class="section-heading">Publications</h2>
     <p class="section-subtext">* denotes equal contribution</p>
 
-    <div class="pub-list">
-
-      <div class="pub-entry">
-        <div class="pub-entry-thumb"><img src="assets/papers/hyperbolic.png" alt="Hyperbolic RL"></div>
-        <div class="pub-entry-body">
-          <h3><a href="https://github.com/Probabilistic-and-Interactive-ML/hyper-rl">Understanding and Improving Hyperbolic Deep Reinforcement Learning</a></h3>
-          <div class="pub-authors">T. Klein*, T. Lang*, <span class="me">A. Shkabrii</span>, A. Sturm, K. Sidak, L. Miklautz, C. Plant, Y. Velaj, S. Tschiatschek</div>
-          <div class="pub-venue">International Conference on Learning Representations (ICLR), 2026</div>
-          <div class="pub-links">
-            <a href="https://openreview.net/pdf?id=7rfdenlP1L" target="_blank">Paper</a>
-            <a href="https://github.com/Probabilistic-and-Interactive-ML/hyper-rl" target="_blank">Code</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-entry">
-        <div class="pub-entry-thumb"><img src="assets/papers/hsplid.png" alt="H-SPLID"></div>
-        <div class="pub-entry-body">
-          <h3><a href="https://neurips.cc/virtual/2025/poster/120286">H-SPLID: HSIC-based Saliency Preserving Latent Information Decomposition</a></h3>
-          <div class="pub-authors">L. Miklautz*, C. Shi*, <span class="me">A. Shkabrii</span>*, T. T. Davarakis, P. Lam, C. Plant, J. Dy, S. Ioannidis</div>
-          <div class="pub-venue">Conference on Neural Information Processing Systems (NeurIPS), 2025</div>
-          <div class="pub-links">
-            <a href="https://arxiv.org/abs/2510.20627" target="_blank">Paper</a>
-            <a href="https://github.com/neu-spiral/H-SPLID" target="_blank">Code</a>
-            <a href="https://neurips.cc/media/PosterPDFs/NeurIPS%202025/120286.png" target="_blank">Poster</a>
-            <a href="https://slideslive.com/39050056" target="_blank">Slides</a>
-            <a href="https://slideslive.com/39050056" target="_blank">Video</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-entry">
-        <div class="pub-entry-thumb"><img src="assets/papers/brb.png" alt="BRB"></div>
-        <div class="pub-entry-body">
-          <h3><a href="https://iclr.cc/virtual/2025/poster/28226">Breaking the Reclustering Barrier in Centroid-based Deep Clustering</a></h3>
-          <div class="pub-authors">L. Miklautz*, T. Klein*, K. Sidak*, C. Leiber, T. Lang, <span class="me">A. Shkabrii</span>, S. Tschiatschek, C. Plant</div>
-          <div class="pub-venue">International Conference on Learning Representations (ICLR), 2025</div>
-          <div class="pub-links">
-            <a href="https://openreview.net/pdf?id=r01fcKhzT5" target="_blank">Paper</a>
-            <a href="https://github.com/Probabilistic-and-Interactive-ML/breaking-the-reclustering-barrier" target="_blank">Code</a>
-            <a href="https://iclr.cc/media/PosterPDFs/ICLR%202025/28226.png?t=1744206577.557315" target="_blank">Poster</a>
-            <a href="https://iclr.cc/media/iclr-2025/Slides/28226.pdf" target="_blank">Slides</a>
-            <a href="https://slideslive.com/39034285" target="_blank">Video</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-entry">
-        <div class="pub-entry-thumb"><img src="assets/papers/resl.png" alt="ReSL"></div>
-        <div class="pub-entry-body">
-          <h3><a href="https://openreview.net/pdf?id=5nweoGtulA">ReSL: Enhancing Deep Clustering Through Reset-based Self-Labeling</a></h3>
-          <div class="pub-authors"><span class="me">A. Shkabrii</span>, T. Klein, L. Miklautz, S. Tschiatschek, C. Plant</div>
-          <div class="pub-venue">Workshop on Spurious Correlation and Shortcut Learning (SCSL) and Workshop on Scaling Self-Improving Foundation Models (SSI-FM) @ International Conference on Learning Representations (ICLR), 2025</div>
-          <div class="pub-links">
-            <a href="https://openreview.net/pdf?id=5nweoGtulA" target="_blank">Paper</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-entry">
-        <div class="pub-entry-thumb"><img src="assets/papers/glassbeads.png" alt="Glass Beads"></div>
-        <div class="pub-entry-body">
-          <h3><a href="https://ieeexplore.ieee.org/document/10302468">Non-redundant Image Clustering of Early Medieval Glass Beads</a></h3>
-          <div class="pub-authors">L. Miklautz, <span class="me">A. Shkabrii</span>, C. Leiber, B. Tobias, B. Seidl, E. Weissensteiner, A. Rausch, C. Böhm, C. Plant</div>
-          <div class="pub-venue">IEEE International Conference on Data Science and Advanced Analytics (DSAA), 2023</div>
-          <div class="pub-links">
-            <a href="https://ieeexplore.ieee.org/document/10302468" target="_blank">Paper</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <div class="pub-list" id="pub-list"></div>
   </section>
 
   <!-- ══════ NEWS ══════ -->
   <section class="home-section" id="news">
     <h2 class="section-heading">News</h2>
-    <ul class="news-list">
-      <li class="news-item">
-        <div class="news-date">Nov 2025</div>
-        <div class="news-body">Received a <a href="https://informatik.univie.ac.at/en/study/univie-research-awards-for-students/awardees-20252026/#c7572" target="_blank">UNIVIE Research Award for Students 2025/2026</a> from the Faculty of Computer Science at the University of Vienna for the ReSL and BRB papers.</div>
-      </li>
-    </ul>
+    <ul class="news-list" id="news-list"></ul>
   </section>
 
   <!-- ══════ CONTACT ══════ -->
@@ -694,6 +650,48 @@ function toggleTheme() {
 document.querySelectorAll('.navbar-nav a').forEach(a => {
   a.addEventListener('click', () => document.getElementById('navMenu').classList.remove('open'));
 });
+
+const LINK_LABELS = ['paper', 'code', 'poster', 'slides', 'video'];
+
+function renderPub(p) {
+  const links = LINK_LABELS
+    .filter(k => p.links && p.links[k])
+    .map(k => `<a href="${p.links[k]}" target="_blank">${k[0].toUpperCase() + k.slice(1)}</a>`)
+    .join('\n            ');
+  const titleHtml = p.title_url
+    ? `<a href="${p.title_url}" target="_blank">${p.title}</a>`
+    : p.title;
+  return `
+    <div class="pub-entry">
+      <div class="pub-entry-thumb"><img src="${p.thumb}" alt=""></div>
+      <div class="pub-entry-body">
+        <h3>${titleHtml}</h3>
+        <div class="pub-authors">${p.authors}</div>
+        <div class="pub-venue">${p.venue}</div>
+        <div class="pub-links">
+            ${links}
+        </div>
+      </div>
+    </div>`;
+}
+
+fetch('assets/papers/papers.json')
+  .then(r => r.json())
+  .then(papers => {
+    document.getElementById('pub-list').innerHTML = papers.map(renderPub).join('');
+  });
+
+fetch('assets/news/news.json')
+  .then(r => r.json())
+  .then(items => {
+    document.getElementById('news-list').innerHTML = items
+      .map(it => `
+        <li class="news-item">
+          <div class="news-date">${it.date}</div>
+          <div class="news-body">${it.body}</div>
+        </li>`)
+      .join('');
+  });
 </script>
 </body>
 </html>
