@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrii Shkabrii</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --bg: #fff;
+  --bg-card: #fff;
+  --text: #333;
+  --text-light: #555;
+  --text-muted: #888;
+  --heading: #1a1a2e;
+  --primary: #1565c0;
+  --primary-hover: #0d47a1;
+  --primary-bg: rgba(21,101,192,0.06);
+  --border: #e4e4e4;
+  --nav-bg: rgba(255,255,255,0.95);
+  --code-bg: #f4f4f4;
+  --shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+html.dark {
+  --bg: #1a1a2e;
+  --bg-card: #20203a;
+  --text: #ccc;
+  --text-light: #aaa;
+  --text-muted: #777;
+  --heading: #e0e0e0;
+  --primary: #6db3f2;
+  --primary-hover: #90caf9;
+  --primary-bg: rgba(109,179,242,0.08);
+  --border: #2e2e4a;
+  --nav-bg: rgba(26,26,46,0.95);
+  --code-bg: #2a2a44;
+  --shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.65;
+  transition: background 0.3s, color 0.3s;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary-hover); text-decoration: underline; }
+
+/* ────── NAVBAR ────── */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  height: 50px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s, border-color 0.3s;
+}
+.navbar-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--heading);
+  text-decoration: none;
+}
+.navbar-brand:hover { text-decoration: none; color: var(--heading); }
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+.navbar-nav a {
+  display: block;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-light);
+  text-decoration: none;
+  border-radius: 4px;
+}
+.navbar-nav a:hover {
+  color: var(--primary);
+  text-decoration: none;
+  background: var(--primary-bg);
+}
+.theme-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-light); font-size: 0.95rem;
+  padding: 6px 8px; border-radius: 4px;
+}
+.theme-btn:hover { color: var(--primary); background: var(--primary-bg); }
+.mobile-toggle {
+  display: none; background: none; border: none; cursor: pointer;
+  color: var(--text-light); font-size: 1.2rem; padding: 4px 8px;
+}
+
+/* ────── LAYOUT ────── */
+.page-body {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 70px 20px 60px;
+}
+
+/* ────── ABOUT WIDGET ────── */
+.about-widget {
+  display: flex;
+  gap: 50px;
+  padding: 40px 0 50px;
+}
+.about-avatar {
+  flex-shrink: 0;
+  width: 270px;
+  text-align: center;
+}
+.about-avatar .avatar {
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.about-avatar .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.about-avatar h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 4px;
+}
+.about-avatar .role {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: 2px;
+}
+.about-avatar .org {
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+.about-avatar .org a { color: var(--primary); }
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--primary);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.social-links a:hover {
+  background: var(--primary-bg);
+  text-decoration: none;
+}
+
+.about-text {
+  flex: 1;
+  padding-top: 10px;
+}
+.about-text h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 16px;
+}
+.about-text p {
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+.about-text a { color: var(--primary); }
+.about-text strong { font-weight: 600; }
+
+.about-columns {
+  display: flex;
+  gap: 40px;
+  margin-top: 24px;
+}
+.about-col h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 8px;
+}
+.about-col ul {
+  list-style: none;
+  padding: 0;
+}
+.about-col li {
+  font-size: 0.9rem;
+  color: var(--text);
+  padding: 2px 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.about-col li i {
+  color: var(--primary);
+  font-size: 0.6rem;
+  width: 10px;
+  flex-shrink: 0;
+}
+.about-col .edu-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 5px 0;
+}
+.about-col .edu-item i {
+  color: var(--primary);
+  font-size: 0.85rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.about-col .edu-item div {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.about-col .edu-item .edu-degree { font-weight: 500; color: var(--text); }
+.about-col .edu-item .edu-school { font-size: 0.82rem; color: var(--text-muted); }
+
+.cv-link {
+  margin-top: 18px;
+  font-size: 0.92rem;
+}
+
+/* ────── SECTION HEADERS ────── */
+.home-section {
+  padding: 40px 0;
+}
+.home-section + .home-section {
+  border-top: 1px solid var(--border);
+}
+.section-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 20px;
+}
+.section-subtext {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* ────── RESEARCH AREAS ────── */
+.research-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.research-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  width: 50%;
+}
+.research-item i.ra-icon {
+  color: var(--primary);
+  font-size: 1.15rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+  width: 22px;
+  text-align: center;
+}
+.research-item h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 3px;
+}
+.research-item p {
+  font-size: 0.84rem;
+  color: var(--text-light);
+  line-height: 1.55;
+}
+@media (max-width: 860px) {
+  .research-item { width: 100%; }
+}
+
+/* ────── PUBLICATIONS ────── */
+.pub-list {}
+.pub-entry {
+  display: flex;
+  gap: 18px;
+  padding: 16px 0;
+  align-items: flex-start;
+}
+.pub-entry + .pub-entry {
+  border-top: 1px solid var(--border);
+}
+.pub-entry-thumb {
+  width: 120px;
+  height: 85px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--code-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pub-entry-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.pub-entry-thumb .thumb-placeholder {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  opacity: 0.25;
+}
+.pub-entry-body {}
+.pub-entry-body h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+.pub-entry-body h3 a {
+  color: var(--heading);
+}
+.pub-entry-body h3 a:hover {
+  color: var(--primary);
+}
+.pub-authors {
+  font-size: 0.83rem;
+  color: var(--text-light);
+  margin-bottom: 2px;
+  line-height: 1.45;
+}
+.pub-authors .me { font-weight: 600; text-decoration: underline; text-decoration-color: var(--primary); text-underline-offset: 2px; }
+.pub-venue {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 6px;
+}
+.pub-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.pub-links a {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--primary);
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.pub-links a:hover {
+  background: var(--primary-bg);
+  border-color: var(--primary);
+  text-decoration: none;
+}
+
+/* ────── NEWS ────── */
+.news-list { list-style: none; padding: 0; }
+.news-item {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  align-items: baseline;
+}
+.news-item + .news-item { border-top: 1px solid var(--border); }
+.news-date {
+  flex-shrink: 0;
+  width: 110px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.news-body { font-size: 0.92rem; color: var(--text); line-height: 1.6; }
+.news-body a { color: var(--primary); }
+@media (max-width: 860px) {
+  .news-item { flex-direction: column; gap: 2px; }
+  .news-date { width: auto; }
+}
+
+/* ────── CONTACT ────── */
+.contact-list { list-style: none; }
+.contact-list li {
+  font-size: 0.92rem;
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contact-list li i {
+  color: var(--primary);
+  width: 18px;
+  text-align: center;
+}
+
+/* ────── FOOTER ────── */
+footer {
+  text-align: center;
+  padding: 24px 20px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+footer p { margin: 2px 0; }
+footer a { color: var(--text-muted); }
+footer a:hover { color: var(--primary); }
+
+/* ────── RESPONSIVE ────── */
+@media (max-width: 860px) {
+  .about-widget { flex-direction: column; gap: 24px; align-items: center; text-align: center; }
+  .about-avatar { width: auto; }
+  .about-avatar .avatar { width: 200px; height: 200px; font-size: 3.5rem; }
+  .about-columns { flex-direction: column; gap: 20px; }
+  .about-col li, .about-col .edu-item { justify-content: center; }
+  .navbar-nav { display: none; }
+  .navbar-nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50px; left: 0; right: 0;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+    gap: 2px;
+  }
+  .mobile-toggle { display: block; }
+  .project-grid { grid-template-columns: 1fr; }
+  .pub-entry { flex-direction: column; }
+  .pub-entry-thumb { width: 100%; height: 120px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="navbar-brand">Andrii Shkabrii</a>
+    <ul class="navbar-nav" id="navMenu">
+      <li><a href="#about">Home</a></li>
+      <li><a href="#research">Research Areas</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="assets/cv.pdf" target="_blank">CV</a></li>
+      <li><button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" id="themeIcon"></i></button></li>
+    </ul>
+    <button class="mobile-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</div>
+
+<div class="page-body">
+
+  <!-- ══════ ABOUT ══════ -->
+  <section class="about-widget" id="about">
+    <div class="about-avatar">
+      <div class="avatar"><img src="assets/photo.jpeg" alt="Andrii Shkabrii"></div>
+      <h2>Andrii Shkabrii</h2>
+      <div class="role">PhD Student</div>
+      <div class="org"><a href="https://dm.cs.univie.ac.at/">Data Mining and Machine Learning</a><br>
+        <a href="https://www.univie.ac.at/">University of Vienna</a></div>
+      <div class="social-links">
+        <a href="mailto:andrii.shkabrii@univie.ac.at" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://github.com/shkabrii" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://scholar.google.com/citations?user=BLEQg1QAAAAJ&hl" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+        <a href="https://www.linkedin.com/in/andrii-shkabrii-62b7a2229/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <h1>Biography</h1>
+      <p>I am a PhD student in the <a href="https://dm.cs.univie.ac.at/">Research Group Data Mining and Machine Learning</a> at the <a href="https://www.univie.ac.at/">University of Vienna</a>, supervised by <a href="https://dm.cs.univie.ac.at/team/person/59835/">Prof. Claudia Plant</a>. I am interested in understanding how neural networks organize information in their embedding space, and in developing principled methods to make learned representations more robust, fair, and trustworthy.</p>
+
+      <p>Broadly, my interests span representation learning, adversarial robustness, fairness in machine learning, and AI safety. I enjoy research that combines empirical work with theoretical analysis, and I am drawn to questions where careful reasoning about geometry and information can lead to simple, principled solutions.</p>
+
+      <p class="cv-link">Download my <a href="assets/cv.pdf">CV</a>.</p>
+
+      <div class="about-columns">
+        <div class="about-col">
+          <h3>Interests</h3>
+          <ul>
+            <li><i class="fa-solid fa-chevron-right"></i> Representation Learning</li>
+            <li><i class="fa-solid fa-chevron-right"></i> Adversarial Robustness</li>
+            <li><i class="fa-solid fa-chevron-right"></i> Fairness in ML</li>
+            <li><i class="fa-solid fa-chevron-right"></i> Deep Clustering</li>
+            <li><i class="fa-solid fa-chevron-right"></i> Reinforcement Learning</li>
+            <li><i class="fa-solid fa-chevron-right"></i> AI Safety</li>
+          </ul>
+        </div>
+        <div class="about-col">
+          <h3>Education</h3>
+          <div class="edu-item">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <div>
+              <div class="edu-degree">M.Sc. in Computer Science, 2025</div>
+              <div class="edu-school">University of Vienna - Graduated with Distinction</div>
+            </div>
+          </div>
+          <div class="edu-item">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <div>
+              <div class="edu-degree">B.Sc. in Computer Science, 2022</div>
+              <div class="edu-school">University of Vienna</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ RESEARCH AREAS ══════ -->
+  <section class="home-section" id="research">
+    <h2 class="section-heading">Research Areas</h2>
+    <div class="research-list">
+
+      <div class="research-item">
+        <i class="fa-solid fa-layer-group ra-icon"></i>
+        <div>
+          <h3>Representation Learning</h3>
+          <p>Understanding how deep networks structure information in their embedding spaces, and learning representations that are useful for downstream tasks.</p>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <i class="fa-solid fa-scale-balanced ra-icon"></i>
+        <div>
+          <h3>Fairness</h3>
+          <p>Building models whose decisions do not rely on sensitive attributes, with formal notions of fairness backed by theoretical guarantees.</p>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <i class="fa-solid fa-shield-halved ra-icon"></i>
+        <div>
+          <h3>Adversarial Robustness</h3>
+          <p>Studying how and why neural networks fail under small perturbations, and developing principled ways to make them more resilient.</p>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <i class="fa-solid fa-lock ra-icon"></i>
+        <div>
+          <h3>AI Safety</h3>
+          <p>Making powerful models reliable and aligned with human intent, with an interest in unlearning, deception detection, and interpretability.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════ PUBLICATIONS ══════ -->
+  <section class="home-section" id="publications">
+    <h2 class="section-heading">Publications</h2>
+    <p class="section-subtext">* denotes equal contribution</p>
+
+    <div class="pub-list">
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/hyperbolic.png" alt="Hyperbolic RL"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://github.com/Probabilistic-and-Interactive-ML/hyper-rl">Understanding and Improving Hyperbolic Deep Reinforcement Learning</a></h3>
+          <div class="pub-authors">T. Klein*, T. Lang*, <span class="me">A. Shkabrii</span>, A. Sturm, K. Sidak, L. Miklautz, C. Plant, Y. Velaj, S. Tschiatschek</div>
+          <div class="pub-venue">International Conference on Learning Representations (ICLR), 2026</div>
+          <div class="pub-links">
+            <a href="https://openreview.net/pdf?id=7rfdenlP1L" target="_blank">Paper</a>
+            <a href="https://github.com/Probabilistic-and-Interactive-ML/hyper-rl" target="_blank">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/hsplid.png" alt="H-SPLID"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://neurips.cc/virtual/2025/poster/120286">H-SPLID: HSIC-based Saliency Preserving Latent Information Decomposition</a></h3>
+          <div class="pub-authors">L. Miklautz*, C. Shi*, <span class="me">A. Shkabrii</span>*, T. T. Davarakis, P. Lam, C. Plant, J. Dy, S. Ioannidis</div>
+          <div class="pub-venue">Conference on Neural Information Processing Systems (NeurIPS), 2025</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2510.20627" target="_blank">Paper</a>
+            <a href="https://github.com/neu-spiral/H-SPLID" target="_blank">Code</a>
+            <a href="https://neurips.cc/media/PosterPDFs/NeurIPS%202025/120286.png" target="_blank">Poster</a>
+            <a href="https://slideslive.com/39050056" target="_blank">Slides</a>
+            <a href="https://slideslive.com/39050056" target="_blank">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/brb.png" alt="BRB"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://iclr.cc/virtual/2025/poster/28226">Breaking the Reclustering Barrier in Centroid-based Deep Clustering</a></h3>
+          <div class="pub-authors">L. Miklautz*, T. Klein*, K. Sidak*, C. Leiber, T. Lang, <span class="me">A. Shkabrii</span>, S. Tschiatschek, C. Plant</div>
+          <div class="pub-venue">International Conference on Learning Representations (ICLR), 2025</div>
+          <div class="pub-links">
+            <a href="https://openreview.net/pdf?id=r01fcKhzT5" target="_blank">Paper</a>
+            <a href="https://github.com/Probabilistic-and-Interactive-ML/breaking-the-reclustering-barrier" target="_blank">Code</a>
+            <a href="https://iclr.cc/media/PosterPDFs/ICLR%202025/28226.png?t=1744206577.557315" target="_blank">Poster</a>
+            <a href="https://iclr.cc/media/iclr-2025/Slides/28226.pdf" target="_blank">Slides</a>
+            <a href="https://slideslive.com/39034285" target="_blank">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/resl.png" alt="ReSL"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://openreview.net/pdf?id=5nweoGtulA">ReSL: Enhancing Deep Clustering Through Reset-based Self-Labeling</a></h3>
+          <div class="pub-authors"><span class="me">A. Shkabrii</span>, T. Klein, L. Miklautz, S. Tschiatschek, C. Plant</div>
+          <div class="pub-venue">Workshop on Spurious Correlation and Shortcut Learning (SCSL) and Workshop on Scaling Self-Improving Foundation Models (SSI-FM) @ International Conference on Learning Representations (ICLR), 2025</div>
+          <div class="pub-links">
+            <a href="https://openreview.net/pdf?id=5nweoGtulA" target="_blank">Paper</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/glassbeads.png" alt="Glass Beads"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://ieeexplore.ieee.org/document/10302468">Non-redundant Image Clustering of Early Medieval Glass Beads</a></h3>
+          <div class="pub-authors">L. Miklautz, <span class="me">A. Shkabrii</span>, C. Leiber, B. Tobias, B. Seidl, E. Weissensteiner, A. Rausch, C. Böhm, C. Plant</div>
+          <div class="pub-venue">IEEE International Conference on Data Science and Advanced Analytics (DSAA), 2023</div>
+          <div class="pub-links">
+            <a href="https://ieeexplore.ieee.org/document/10302468" target="_blank">Paper</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════ NEWS ══════ -->
+  <section class="home-section" id="news">
+    <h2 class="section-heading">News</h2>
+    <ul class="news-list">
+      <li class="news-item">
+        <div class="news-date">Nov 2025</div>
+        <div class="news-body">Received a <a href="https://informatik.univie.ac.at/en/study/univie-research-awards-for-students/awardees-20252026/#c7572" target="_blank">UNIVIE Research Award for Students 2025/2026</a> from the Faculty of Computer Science at the University of Vienna for the ReSL and BRB papers.</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ══════ CONTACT ══════ -->
+  <section class="home-section" id="contact">
+    <h2 class="section-heading">Contact</h2>
+    <p style="font-size:0.95rem; margin-bottom:16px;">I am always open to collaboration and happy to chat about research ideas. If you're working on something related or just want to connect, feel free to reach out!</p>
+    <ul class="contact-list">
+      <li><i class="fa-solid fa-envelope"></i> <a href="mailto:andrii.shkabrii@univie.ac.at">andrii.shkabrii@univie.ac.at</a></li>
+      <li><i class="fa-solid fa-location-dot"></i> Vienna, Austria</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Andrii Shkabrii</p>
+</footer>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const icon = document.getElementById('themeIcon');
+  html.classList.toggle('dark');
+  html.classList.toggle('light');
+  icon.className = html.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+}
+
+document.querySelectorAll('.navbar-nav a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navMenu').classList.remove('open'));
+});
+</script>
+</body>
+</html>
