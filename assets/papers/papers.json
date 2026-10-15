@@ -1,5 +1,19 @@
 [
   {
+    "title": "Outperforming 1000 Euclidean Layers With Hyperbolic Goal-Conditioned RL",
+    "title_url": "https://arxiv.org/abs/2610.20009",
+    "authors": "T. Klein, T. Lang, <span class=\"me\">A. Shkabrii</span>, L. Miklautz, Y. Velaj, S. Tschiatschek",
+    "venue": "arXiv preprint, 2026",
+    "thumb": "assets/papers/hypgcrl.png",
+    "links": {
+      "paper": "https://arxiv.org/abs/2610.20009",
+      "code": "https://github.com/Probabilistic-and-Interactive-ML/HypGCRL",
+      "poster": "",
+      "slides": "",
+      "video": ""
+    }
+  },
+  {
     "title": "Understanding and Improving Hyperbolic Deep Reinforcement Learning",
     "title_url": "https://github.com/Probabilistic-and-Interactive-ML/hyper-rl",
     "authors": "T. Klein*, T. Lang*, <span class=\"me\">A. Shkabrii</span>, A. Sturm, K. Sidak, L. Miklautz, C. Plant, Y. Velaj, S. Tschiatschek",
