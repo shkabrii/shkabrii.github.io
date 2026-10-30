@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andrii Shkabrii</title>
+<meta name="description" content="Andrii Shkabrii, PhD student in the Data Mining and Machine Learning group at the University of Vienna, working on representation learning, robustness, fairness, and AI safety.">
+<meta name="author" content="Andrii Shkabrii">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -119,7 +121,9 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
 /* ────── ABOUT WIDGET ────── */
 .about-widget {
   display: flex;
+  flex-wrap: wrap;
   gap: 50px;
+  row-gap: 24px;
   padding: 40px 0 50px;
 }
 .about-avatar {
@@ -196,57 +200,19 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
 .about-text a { color: var(--primary); }
 .about-text strong { font-weight: 600; }
 
-.about-columns {
-  display: flex;
-  gap: 40px;
-  margin-top: 24px;
-}
-.about-col h3 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--heading);
-  margin-bottom: 8px;
-}
-.about-col ul {
-  list-style: none;
-  padding: 0;
-}
-.about-col li {
-  font-size: 0.9rem;
-  color: var(--text);
-  padding: 2px 0;
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-.about-col li i {
-  color: var(--primary);
-  font-size: 0.6rem;
-  width: 10px;
-  flex-shrink: 0;
-}
-.about-col .edu-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 5px 0;
-}
-.about-col .edu-item i {
-  color: var(--primary);
-  font-size: 0.85rem;
-  margin-top: 3px;
-  flex-shrink: 0;
-}
-.about-col .edu-item div {
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-.about-col .edu-item .edu-degree { font-weight: 500; color: var(--text); }
-.about-col .edu-item .edu-school { font-size: 0.82rem; color: var(--text-muted); }
 
 .cv-link {
   margin-top: 18px;
   font-size: 0.92rem;
+}
+.about-research {
+  flex-basis: 100%;
+}
+.about-subheading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 4px;
 }
 
 /* ────── SECTION HEADERS ────── */
@@ -275,25 +241,24 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
   gap: 0;
 }
 .research-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 14px 0;
-  width: 50%;
+  padding: 12px 18px 12px 0;
+  width: 25%;
 }
 .research-item i.ra-icon {
   color: var(--primary);
-  font-size: 1.15rem;
-  margin-top: 2px;
+  font-size: 1.05rem;
   flex-shrink: 0;
-  width: 22px;
+  width: 20px;
   text-align: center;
 }
 .research-item h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--heading);
-  margin-bottom: 3px;
+  margin-bottom: 6px;
 }
 .research-item p {
   font-size: 0.84rem;
@@ -305,16 +270,16 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
 .pub-list {}
 .pub-entry {
   display: flex;
-  gap: 18px;
-  padding: 16px 0;
+  gap: 22px;
+  padding: 18px 0;
   align-items: flex-start;
 }
 .pub-entry + .pub-entry {
   border-top: 1px solid var(--border);
 }
 .pub-entry-thumb {
-  width: 120px;
-  height: 85px;
+  width: 220px;
+  height: 155px;
   border-radius: 4px;
   overflow: hidden;
   flex-shrink: 0;
@@ -390,7 +355,7 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
 .news-item + .news-item { border-top: 1px solid var(--border); }
 .news-date {
   flex-shrink: 0;
-  width: 110px;
+  width: 130px;
   font-size: 0.82rem;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
@@ -426,6 +391,10 @@ footer a { color: var(--text-muted); }
 footer a:hover { color: var(--primary); }
 
 /* ────── RESPONSIVE ────── */
+@media (max-width: 1100px) {
+  .research-item { width: 50%; }
+}
+
 @media (max-width: 860px) {
   .page-body { padding: 60px 16px 40px; }
 
@@ -436,6 +405,7 @@ footer a:hover { color: var(--primary); }
     padding: 24px 0 30px;
   }
   .about-avatar { width: 100%; text-align: center; }
+  .about-research { width: 100%; }
   .about-avatar .avatar { width: 170px; height: 170px; margin: 0 auto 14px; }
 
   .about-text { padding-top: 0; width: 100%; text-align: left; }
@@ -446,9 +416,8 @@ footer a:hover { color: var(--primary); }
   #contact > p { text-align: justify; hyphens: auto; }
   .about-text p { font-size: 0.95rem; }
   .cv-link { text-align: center; }
+  .about-subheading { text-align: center; }
 
-  .about-columns { flex-direction: column; gap: 18px; margin-top: 20px; }
-  .about-col h3 { text-align: center; }
 
   .navbar-nav { display: none; }
   .navbar-nav.open {
@@ -468,10 +437,10 @@ footer a:hover { color: var(--primary); }
   .home-section { padding: 30px 0; }
   .section-heading { font-size: 1.35rem; }
 
-  .research-item { width: 100%; }
+  .research-item { width: 100%; padding-right: 0; }
 
   .pub-entry { flex-direction: column; gap: 12px; }
-  .pub-entry-thumb { width: 100%; height: 160px; }
+  .pub-entry-thumb { width: 100%; max-width: 440px; height: auto; aspect-ratio: 220 / 155; }
   .pub-authors, .pub-venue { overflow-wrap: anywhere; }
   .pub-links { gap: 6px; }
 
@@ -485,7 +454,6 @@ footer a:hover { color: var(--primary); }
   .about-avatar .avatar { width: 150px; height: 150px; }
   .about-text h1 { font-size: 1.35rem; }
   .section-heading { font-size: 1.25rem; }
-  .pub-entry-thumb { height: 130px; }
 }
 </style>
 </head>
@@ -497,9 +465,8 @@ footer a:hover { color: var(--primary); }
     <a href="#" class="navbar-brand">Andrii Shkabrii</a>
     <ul class="navbar-nav" id="navMenu">
       <li><a href="#about">Home</a></li>
-      <li><a href="#research">Research Areas</a></li>
-      <li><a href="#publications">Publications</a></li>
       <li><a href="#news">News</a></li>
+      <li><a href="#publications">Publications</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="assets/cv.pdf" target="_blank">CV</a></li>
       <li><button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" id="themeIcon"></i></button></li>
@@ -530,83 +497,60 @@ footer a:hover { color: var(--primary); }
 
     <div class="about-text">
       <h1>Biography</h1>
-      <p>I am a PhD student in the <a href="https://dm.cs.univie.ac.at/">Research Group Data Mining and Machine Learning</a> at the <a href="https://www.univie.ac.at/">University of Vienna</a>, supervised by <a href="https://dm.cs.univie.ac.at/team/person/59835/">Prof. Claudia Plant</a>. I am interested in understanding how neural networks organize information in their embedding space, and in developing principled methods to make learned representations more robust, fair, and trustworthy.</p>
+      <p>I am a PhD student in the <a href="https://dm.cs.univie.ac.at/">Research Group Data Mining and Machine Learning</a> at the <a href="https://www.univie.ac.at/">University of Vienna</a>, supervised by <a href="https://dm.cs.univie.ac.at/about-us/team/person/unitid/73/claudia-plant?cHash=9e8d1b03860cdaba4ed440ccd32ded2a">Prof. Claudia Plant</a> and co-advised by <a href="https://martinpawelczyk.github.io/">Prof. Martin Pawelczyk</a>. Before that, I completed my M.Sc. in Computer Science at the University of Vienna, graduating with distinction in 2025. I am interested in understanding how neural networks organize information in their embedding space, and in developing principled methods to make learned representations more robust, fair, safe, and trustworthy.</p>
 
       <p>Broadly, my interests span representation learning, adversarial robustness, fairness in machine learning, and AI safety. I enjoy research that combines empirical work with theoretical analysis, and I am drawn to questions where careful reasoning about geometry and information can lead to simple, principled solutions.</p>
 
       <p class="cv-link">Download my <a href="assets/cv.pdf">CV</a>.</p>
 
-      <div class="about-columns">
-        <div class="about-col">
-          <h3>Interests</h3>
-          <ul>
-            <li><i class="fa-solid fa-chevron-right"></i> Representation Learning</li>
-            <li><i class="fa-solid fa-chevron-right"></i> Adversarial Robustness</li>
-            <li><i class="fa-solid fa-chevron-right"></i> Fairness in ML</li>
-            <li><i class="fa-solid fa-chevron-right"></i> Deep Clustering</li>
-            <li><i class="fa-solid fa-chevron-right"></i> Reinforcement Learning</li>
-            <li><i class="fa-solid fa-chevron-right"></i> AI Safety</li>
-          </ul>
+
+    </div>
+
+    <div class="about-research">
+      <h2 class="about-subheading">Research Areas</h2>
+      <div class="research-list">
+
+        <div class="research-item">
+          <h3><i class="fa-solid fa-layer-group ra-icon"></i>Representation Learning</h3>
+          <p>Understanding how deep networks structure information in their embeddings, from clustering to reinforcement learning.</p>
         </div>
-        <div class="about-col">
-          <h3>Education</h3>
-          <div class="edu-item">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <div>
-              <div class="edu-degree">M.Sc. in Computer Science, 2025</div>
-              <div class="edu-school">University of Vienna - Graduated with Distinction</div>
-            </div>
-          </div>
-          <div class="edu-item">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <div>
-              <div class="edu-degree">B.Sc. in Computer Science, 2022</div>
-              <div class="edu-school">University of Vienna</div>
-            </div>
-          </div>
+
+        <div class="research-item">
+          <h3><i class="fa-solid fa-scale-balanced ra-icon"></i>Fairness</h3>
+          <p>Building models whose decisions do not rely on sensitive attributes such as race, age, or gender, with formal notions of fairness backed by theoretical guarantees.</p>
         </div>
+
+        <div class="research-item">
+          <h3><i class="fa-solid fa-shield-halved ra-icon"></i>Adversarial Robustness</h3>
+          <p>Studying how and why neural networks fail under perturbations and adversarial attacks, and developing principled ways to make them more resilient.</p>
+        </div>
+
+        <div class="research-item">
+          <h3><i class="fa-solid fa-lock ra-icon"></i>AI Safety</h3>
+          <p>Making powerful models reliable and aligned with human intent, with an interest in unlearning, deception detection, and interpretability.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ══════ RESEARCH AREAS ══════ -->
-  <section class="home-section" id="research">
-    <h2 class="section-heading">Research Areas</h2>
-    <div class="research-list">
-
-      <div class="research-item">
-        <i class="fa-solid fa-layer-group ra-icon"></i>
-        <div>
-          <h3>Representation Learning</h3>
-          <p>Understanding how deep networks structure information in their embedding spaces, and learning representations that are useful for downstream tasks.</p>
-        </div>
-      </div>
-
-      <div class="research-item">
-        <i class="fa-solid fa-scale-balanced ra-icon"></i>
-        <div>
-          <h3>Fairness</h3>
-          <p>Building models whose decisions do not rely on sensitive attributes, with formal notions of fairness backed by theoretical guarantees.</p>
-        </div>
-      </div>
-
-      <div class="research-item">
-        <i class="fa-solid fa-shield-halved ra-icon"></i>
-        <div>
-          <h3>Adversarial Robustness</h3>
-          <p>Studying how and why neural networks fail under small perturbations, and developing principled ways to make them more resilient.</p>
-        </div>
-      </div>
-
-      <div class="research-item">
-        <i class="fa-solid fa-lock ra-icon"></i>
-        <div>
-          <h3>AI Safety</h3>
-          <p>Making powerful models reliable and aligned with human intent, with an interest in unlearning, deception detection, and interpretability.</p>
-        </div>
-      </div>
-
-    </div>
+  <!-- ══════ NEWS ══════ -->
+  <section class="home-section" id="news">
+    <h2 class="section-heading">News</h2>
+    <ul class="news-list">
+      <li class="news-item">
+        <div class="news-date">September 28, 2026</div>
+        <div class="news-body">Our paper "<a href="https://arxiv.org/abs/2610.39031" target="_blank">FairSplit: Decomposing the Embedding Space for Fair Classification</a>" was <a href="https://dm.cs.univie.ac.at/news/story/four-papers-accepted-at-neurips-2026" target="_blank">accepted at NeurIPS 2026</a>.</div>
+      </li>
+      <li class="news-item">
+        <div class="news-date">June 1, 2026</div>
+        <div class="news-body">Presented the poster "Teaching Neural Networks What to Ignore" at the <a href="https://informatics.tuwien.ac.at/news/3068" target="_blank">Austrian Computer Science Day 2026</a> at TU Wien.</div>
+      </li>
+      <li class="news-item">
+        <div class="news-date">June 25, 2025</div>
+        <div class="news-body">Received a <a href="https://informatik.univie.ac.at/en/studies/univie-awards/andrii-shkabrii" target="_blank">UNIVIE Research Award for Students 2025/2026</a> from the Faculty of Computer Science at the University of Vienna for the ReSL and BRB papers.</div>
+      </li>
+    </ul>
   </section>
 
   <!-- ══════ PUBLICATIONS ══════ -->
@@ -614,13 +558,102 @@ footer a:hover { color: var(--primary); }
     <h2 class="section-heading">Publications</h2>
     <p class="section-subtext">* denotes equal contribution</p>
 
-    <div class="pub-list" id="pub-list"></div>
-  </section>
+    <div class="pub-list">
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/fairsplit.png" alt="FairSplit: Decomposing the Embedding Space for Fair Classification" loading="lazy"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://arxiv.org/abs/2610.39031" target="_blank" rel="noopener">FairSplit: Decomposing the Embedding Space for Fair Classification</a></h3>
+          <div class="pub-authors"><span class="me">A. Shkabrii</span>, A. Beer, Y. Sadikaj, C. Plant</div>
+          <div class="pub-venue">Conference on Neural Information Processing Systems (NeurIPS), 2026</div>
+          <div class="pub-links">
+          <a href="https://arxiv.org/abs/2610.39031" target="_blank" rel="noopener">Paper</a>
+          <a href="https://github.com/shkabrii/fairsplit" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+      </div>
 
-  <!-- ══════ NEWS ══════ -->
-  <section class="home-section" id="news">
-    <h2 class="section-heading">News</h2>
-    <ul class="news-list" id="news-list"></ul>
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/hypgcrl.png" alt="Outperforming 1000 Euclidean Layers With Hyperbolic Goal-Conditioned RL" loading="lazy"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://arxiv.org/abs/2610.20009" target="_blank" rel="noopener">Outperforming 1000 Euclidean Layers With Hyperbolic Goal-Conditioned RL</a></h3>
+          <div class="pub-authors">T. Klein, T. Lang, <span class="me">A. Shkabrii</span>, L. Miklautz, Y. Velaj, S. Tschiatschek</div>
+          <div class="pub-venue">arXiv preprint, 2026</div>
+          <div class="pub-links">
+          <a href="https://arxiv.org/abs/2610.20009" target="_blank" rel="noopener">Paper</a>
+          <a href="https://github.com/Probabilistic-and-Interactive-ML/HypGCRL" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/hyperbolic.png" alt="Understanding and Improving Hyperbolic Deep Reinforcement Learning" loading="lazy"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://github.com/Probabilistic-and-Interactive-ML/hyper-rl" target="_blank" rel="noopener">Understanding and Improving Hyperbolic Deep Reinforcement Learning</a></h3>
+          <div class="pub-authors">T. Klein*, T. Lang*, <span class="me">A. Shkabrii</span>, A. Sturm, K. Sidak, L. Miklautz, C. Plant, Y. Velaj, S. Tschiatschek</div>
+          <div class="pub-venue">International Conference on Learning Representations (ICLR), 2026</div>
+          <div class="pub-links">
+          <a href="https://openreview.net/pdf?id=7rfdenlP1L" target="_blank" rel="noopener">Paper</a>
+          <a href="https://github.com/Probabilistic-and-Interactive-ML/hyper-rl" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/hsplid.png" alt="H-SPLID: HSIC-based Saliency Preserving Latent Information Decomposition" loading="lazy"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://neurips.cc/virtual/2025/poster/120286" target="_blank" rel="noopener">H-SPLID: HSIC-based Saliency Preserving Latent Information Decomposition</a></h3>
+          <div class="pub-authors">L. Miklautz*, C. Shi*, <span class="me">A. Shkabrii</span>*, T. T. Davarakis, P. Lam, C. Plant, J. Dy, S. Ioannidis</div>
+          <div class="pub-venue">Conference on Neural Information Processing Systems (NeurIPS), 2025</div>
+          <div class="pub-links">
+          <a href="https://arxiv.org/abs/2510.20627" target="_blank" rel="noopener">Paper</a>
+          <a href="https://github.com/neu-spiral/H-SPLID" target="_blank" rel="noopener">Code</a>
+          <a href="https://neurips.cc/media/PosterPDFs/NeurIPS%202025/120286.png" target="_blank" rel="noopener">Poster</a>
+          <a href="https://slideslive.com/39050056" target="_blank" rel="noopener">Slides</a>
+          <a href="https://slideslive.com/39050056" target="_blank" rel="noopener">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/brb.png" alt="Breaking the Reclustering Barrier in Centroid-based Deep Clustering" loading="lazy"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://iclr.cc/virtual/2025/poster/28226" target="_blank" rel="noopener">Breaking the Reclustering Barrier in Centroid-based Deep Clustering</a></h3>
+          <div class="pub-authors">L. Miklautz*, T. Klein*, K. Sidak*, C. Leiber, T. Lang, <span class="me">A. Shkabrii</span>, S. Tschiatschek, C. Plant</div>
+          <div class="pub-venue">International Conference on Learning Representations (ICLR), 2025</div>
+          <div class="pub-links">
+          <a href="https://openreview.net/pdf?id=r01fcKhzT5" target="_blank" rel="noopener">Paper</a>
+          <a href="https://github.com/Probabilistic-and-Interactive-ML/breaking-the-reclustering-barrier" target="_blank" rel="noopener">Code</a>
+          <a href="https://iclr.cc/media/PosterPDFs/ICLR%202025/28226.png?t=1744206577.557315" target="_blank" rel="noopener">Poster</a>
+          <a href="https://iclr.cc/media/iclr-2025/Slides/28226.pdf" target="_blank" rel="noopener">Slides</a>
+          <a href="https://slideslive.com/39034285" target="_blank" rel="noopener">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/resl.png" alt="ReSL: Enhancing Deep Clustering Through Reset-based Self-Labeling" loading="lazy"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://openreview.net/pdf?id=5nweoGtulA" target="_blank" rel="noopener">ReSL: Enhancing Deep Clustering Through Reset-based Self-Labeling</a></h3>
+          <div class="pub-authors"><span class="me">A. Shkabrii</span>, T. Klein, L. Miklautz, S. Tschiatschek, C. Plant</div>
+          <div class="pub-venue">Workshop on Spurious Correlation and Shortcut Learning (SCSL) and Workshop on Scaling Self-Improving Foundation Models (SSI-FM) @ International Conference on Learning Representations (ICLR), 2025</div>
+          <div class="pub-links">
+          <a href="https://openreview.net/pdf?id=5nweoGtulA" target="_blank" rel="noopener">Paper</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/glassbeads.png" alt="Non-Redundant Image Clustering of Early Medieval Glass Beads" loading="lazy"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://ieeexplore.ieee.org/document/10302468" target="_blank" rel="noopener">Non-Redundant Image Clustering of Early Medieval Glass Beads</a></h3>
+          <div class="pub-authors">L. Miklautz, <span class="me">A. Shkabrii</span>, C. Leiber, B. Tobias, B. Seidl, E. Weissensteiner, A. Rausch, C. B&ouml;hm, C. Plant</div>
+          <div class="pub-venue">IEEE International Conference on Data Science and Advanced Analytics (DSAA), 2023</div>
+          <div class="pub-links">
+          <a href="https://ieeexplore.ieee.org/document/10302468" target="_blank" rel="noopener">Paper</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ══════ CONTACT ══════ -->
@@ -651,48 +684,6 @@ function toggleTheme() {
 document.querySelectorAll('.navbar-nav a').forEach(a => {
   a.addEventListener('click', () => document.getElementById('navMenu').classList.remove('open'));
 });
-
-const LINK_LABELS = ['paper', 'code', 'poster', 'slides', 'video'];
-
-function renderPub(p) {
-  const links = LINK_LABELS
-    .filter(k => p.links && p.links[k])
-    .map(k => `<a href="${p.links[k]}" target="_blank">${k[0].toUpperCase() + k.slice(1)}</a>`)
-    .join('\n            ');
-  const titleHtml = p.title_url
-    ? `<a href="${p.title_url}" target="_blank">${p.title}</a>`
-    : p.title;
-  return `
-    <div class="pub-entry">
-      <div class="pub-entry-thumb"><img src="${p.thumb}" alt=""></div>
-      <div class="pub-entry-body">
-        <h3>${titleHtml}</h3>
-        <div class="pub-authors">${p.authors}</div>
-        <div class="pub-venue">${p.venue}</div>
-        <div class="pub-links">
-            ${links}
-        </div>
-      </div>
-    </div>`;
-}
-
-fetch('assets/papers/papers.json')
-  .then(r => r.json())
-  .then(papers => {
-    document.getElementById('pub-list').innerHTML = papers.map(renderPub).join('');
-  });
-
-fetch('assets/news/news.json')
-  .then(r => r.json())
-  .then(items => {
-    document.getElementById('news-list').innerHTML = items
-      .map(it => `
-        <li class="news-item">
-          <div class="news-date">${it.date}</div>
-          <div class="news-body">${it.body}</div>
-        </li>`)
-      .join('');
-  });
 </script>
 </body>
 </html>
