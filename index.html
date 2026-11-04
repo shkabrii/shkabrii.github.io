@@ -14,7 +14,7 @@
   --bg-card: #fff;
   --text: #333;
   --text-light: #555;
-  --text-muted: #888;
+  --text-muted: #6b6b6b;
   --heading: #1a1a2e;
   --primary: #1565c0;
   --primary-hover: #0d47a1;
@@ -29,7 +29,7 @@ html.dark {
   --bg-card: #20203a;
   --text: #ccc;
   --text-light: #aaa;
-  --text-muted: #777;
+  --text-muted: #9090a4;
   --heading: #e0e0e0;
   --primary: #6db3f2;
   --primary-hover: #90caf9;
@@ -65,7 +65,7 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
   transition: background 0.3s, border-color 0.3s;
 }
 .navbar-inner {
-  max-width: 1140px;
+  max-width: 1060px;
   margin: 0 auto;
   padding: 0 20px;
   height: 100%;
@@ -113,7 +113,7 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
 
 /* ────── LAYOUT ────── */
 .page-body {
-  max-width: 1140px;
+  max-width: 1060px;
   margin: 0 auto;
   padding: 70px 20px 60px;
 }
@@ -128,7 +128,7 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
 }
 .about-avatar {
   flex-shrink: 0;
-  width: 270px;
+  width: 280px;
   text-align: center;
 }
 .about-avatar .avatar {
@@ -136,7 +136,8 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
   height: 270px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--border);
 }
 .about-avatar .avatar img {
   width: 100%;
@@ -169,14 +170,16 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
+  border: 1px solid var(--border);
   color: var(--primary);
   font-size: 0.95rem;
   text-decoration: none;
-  transition: background 0.2s;
+  transition: background 0.2s, border-color 0.2s;
 }
+.social-links a:hover { border-color: var(--primary); }
 .social-links a:hover {
   background: var(--primary-bg);
   text-decoration: none;
@@ -194,7 +197,7 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
 }
 .about-text p {
   margin-bottom: 14px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.75;
 }
 .about-text a { color: var(--primary); }
@@ -261,7 +264,7 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
   margin-bottom: 6px;
 }
 .research-item p {
-  font-size: 0.84rem;
+  font-size: 0.9rem;
   color: var(--text-light);
   line-height: 1.55;
 }
@@ -287,9 +290,22 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 .pub-entry-thumb img {
   width: 100%; height: 100%; object-fit: cover;
+  cursor: zoom-in;
+}
+.zoom-hint {
+  position: absolute; right: 4px; bottom: 2px;
+  width: 42px; height: 48px;
+  background: url(assets/click.gif) center / contain no-repeat;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+  pointer-events: none;
+}
+/* with a mouse, one hint on the first figure is enough; touch screens keep it on every figure */
+@media (hover: hover) and (pointer: fine) {
+  .pub-entry + .pub-entry .zoom-hint { display: none; }
 }
 .pub-entry-thumb .thumb-placeholder {
   font-size: 1.5rem;
@@ -298,7 +314,7 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
 }
 .pub-entry-body {}
 .pub-entry-body h3 {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--heading);
   margin-bottom: 3px;
@@ -311,14 +327,14 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
   color: var(--primary);
 }
 .pub-authors {
-  font-size: 0.83rem;
+  font-size: 0.9rem;
   color: var(--text-light);
   margin-bottom: 2px;
   line-height: 1.45;
 }
 .pub-authors .me { font-weight: 600; text-decoration: underline; text-decoration-color: var(--primary); text-underline-offset: 2px; }
 .pub-venue {
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
   font-style: italic;
   margin-bottom: 6px;
@@ -329,7 +345,10 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
   gap: 5px;
 }
 .pub-links a {
-  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
   font-weight: 600;
   padding: 3px 9px;
   border: 1px solid var(--border);
@@ -344,6 +363,46 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
   text-decoration: none;
 }
 
+/* ────── LIGHTBOX ────── */
+.lightbox {
+  position: fixed; inset: 0; z-index: 2000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px;
+  padding: 56px 16px 24px;
+  background: rgba(10, 12, 20, 0.88);
+  cursor: zoom-out;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.lightbox.open { opacity: 1; visibility: visible; }
+.lightbox img {
+  max-width: min(1400px, 100%);
+  max-height: calc(100% - 40px);
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  transform: scale(0.96);
+  transition: transform 0.2s;
+}
+.lightbox.open img { transform: scale(1); }
+.lightbox-caption {
+  max-width: 900px;
+  color: #e8e8e8;
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.4;
+}
+.lightbox-close {
+  position: absolute; top: 12px; right: 14px;
+  width: 42px; height: 42px;
+  border: none; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff; font-size: 1.6rem; line-height: 1;
+  cursor: pointer;
+}
+.lightbox-close:hover, .lightbox-close:focus-visible { background: rgba(255, 255, 255, 0.28); outline: none; }
+
 /* ────── NEWS ────── */
 .news-list { list-style: none; padding: 0; }
 .news-item {
@@ -355,12 +414,13 @@ a:hover { color: var(--primary-hover); text-decoration: underline; }
 .news-item + .news-item { border-top: 1px solid var(--border); }
 .news-date {
   flex-shrink: 0;
-  width: 130px;
-  font-size: 0.82rem;
+  width: 140px;
+  font-size: 0.86rem;
+  white-space: nowrap;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-.news-body { font-size: 0.92rem; color: var(--text); line-height: 1.6; }
+.news-body { font-size: 0.97rem; color: var(--text); line-height: 1.6; }
 .news-body a { color: var(--primary); }
 
 /* ────── CONTACT ────── */
@@ -410,11 +470,6 @@ footer a:hover { color: var(--primary); }
 
   .about-text { padding-top: 0; width: 100%; text-align: left; }
   .about-text h1 { font-size: 1.5rem; margin-bottom: 12px; text-align: center; }
-  .about-text p,
-  .research-item p,
-  .news-body,
-  #contact > p { text-align: justify; hyphens: auto; }
-  .about-text p { font-size: 0.95rem; }
   .cv-link { text-align: center; }
   .about-subheading { text-align: center; }
 
@@ -539,6 +594,10 @@ footer a:hover { color: var(--primary); }
     <h2 class="section-heading">News</h2>
     <ul class="news-list">
       <li class="news-item">
+        <div class="news-date">November 2, 2026</div>
+        <div class="news-body">New preprint on LLM unlearning: "<a href="https://arxiv.org/abs/2611.03955" target="_blank">Forget What Comes Next: LLM Unlearning via Statistical Independence</a>". The <a href="https://github.com/shkabrii/PINT" target="_blank">code</a> is available on GitHub.</div>
+      </li>
+      <li class="news-item">
         <div class="news-date">September 28, 2026</div>
         <div class="news-body">Our paper "<a href="https://arxiv.org/abs/2610.39031" target="_blank">FairSplit: Decomposing the Embedding Space for Fair Classification</a>" was <a href="https://dm.cs.univie.ac.at/news/story/four-papers-accepted-at-neurips-2026" target="_blank">accepted at NeurIPS 2026</a>.</div>
       </li>
@@ -560,14 +619,27 @@ footer a:hover { color: var(--primary); }
 
     <div class="pub-list">
       <div class="pub-entry">
-        <div class="pub-entry-thumb"><img src="assets/papers/fairsplit.png" alt="FairSplit: Decomposing the Embedding Space for Fair Classification" loading="lazy"></div>
+        <div class="pub-entry-thumb"><img src="assets/papers/pint.png" data-full="assets/papers/pint-full.png" alt="Forget What Comes Next: LLM Unlearning via Statistical Independence" loading="lazy"></div>
+        <div class="pub-entry-body">
+          <h3><a href="https://arxiv.org/abs/2611.03955" target="_blank" rel="noopener">Forget What Comes Next: LLM Unlearning via Statistical Independence</a></h3>
+          <div class="pub-authors"><span class="me">A. Shkabrii</span>, C. Plant, M. Pawelczyk</div>
+          <div class="pub-venue">arXiv preprint, 2026</div>
+          <div class="pub-links">
+          <a href="https://arxiv.org/abs/2611.03955" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i>Paper</a>
+          <a href="https://github.com/shkabrii/PINT" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-entry-thumb"><img src="assets/papers/fairsplit.png" data-full="assets/papers/fairsplit-full.png" alt="FairSplit: Decomposing the Embedding Space for Fair Classification" loading="lazy"></div>
         <div class="pub-entry-body">
           <h3><a href="https://arxiv.org/abs/2610.39031" target="_blank" rel="noopener">FairSplit: Decomposing the Embedding Space for Fair Classification</a></h3>
           <div class="pub-authors"><span class="me">A. Shkabrii</span>, A. Beer, Y. Sadikaj, C. Plant</div>
           <div class="pub-venue">Conference on Neural Information Processing Systems (NeurIPS), 2026</div>
           <div class="pub-links">
-          <a href="https://arxiv.org/abs/2610.39031" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/shkabrii/fairsplit" target="_blank" rel="noopener">Code</a>
+          <a href="https://arxiv.org/abs/2610.39031" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i>Paper</a>
+          <a href="https://github.com/shkabrii/fairsplit" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>Code</a>
           </div>
         </div>
       </div>
@@ -579,8 +651,8 @@ footer a:hover { color: var(--primary); }
           <div class="pub-authors">T. Klein, T. Lang, <span class="me">A. Shkabrii</span>, L. Miklautz, Y. Velaj, S. Tschiatschek</div>
           <div class="pub-venue">arXiv preprint, 2026</div>
           <div class="pub-links">
-          <a href="https://arxiv.org/abs/2610.20009" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/Probabilistic-and-Interactive-ML/HypGCRL" target="_blank" rel="noopener">Code</a>
+          <a href="https://arxiv.org/abs/2610.20009" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i>Paper</a>
+          <a href="https://github.com/Probabilistic-and-Interactive-ML/HypGCRL" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>Code</a>
           </div>
         </div>
       </div>
@@ -592,8 +664,8 @@ footer a:hover { color: var(--primary); }
           <div class="pub-authors">T. Klein*, T. Lang*, <span class="me">A. Shkabrii</span>, A. Sturm, K. Sidak, L. Miklautz, C. Plant, Y. Velaj, S. Tschiatschek</div>
           <div class="pub-venue">International Conference on Learning Representations (ICLR), 2026</div>
           <div class="pub-links">
-          <a href="https://openreview.net/pdf?id=7rfdenlP1L" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/Probabilistic-and-Interactive-ML/hyper-rl" target="_blank" rel="noopener">Code</a>
+          <a href="https://openreview.net/pdf?id=7rfdenlP1L" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i>Paper</a>
+          <a href="https://github.com/Probabilistic-and-Interactive-ML/hyper-rl" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>Code</a>
           </div>
         </div>
       </div>
@@ -605,11 +677,11 @@ footer a:hover { color: var(--primary); }
           <div class="pub-authors">L. Miklautz*, C. Shi*, <span class="me">A. Shkabrii</span>*, T. T. Davarakis, P. Lam, C. Plant, J. Dy, S. Ioannidis</div>
           <div class="pub-venue">Conference on Neural Information Processing Systems (NeurIPS), 2025</div>
           <div class="pub-links">
-          <a href="https://arxiv.org/abs/2510.20627" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/neu-spiral/H-SPLID" target="_blank" rel="noopener">Code</a>
-          <a href="https://neurips.cc/media/PosterPDFs/NeurIPS%202025/120286.png" target="_blank" rel="noopener">Poster</a>
-          <a href="https://slideslive.com/39050056" target="_blank" rel="noopener">Slides</a>
-          <a href="https://slideslive.com/39050056" target="_blank" rel="noopener">Video</a>
+          <a href="https://arxiv.org/abs/2510.20627" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i>Paper</a>
+          <a href="https://github.com/neu-spiral/H-SPLID" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>Code</a>
+          <a href="https://neurips.cc/media/PosterPDFs/NeurIPS%202025/120286.png" target="_blank" rel="noopener"><i class="fa-regular fa-image"></i>Poster</a>
+          <a href="https://slideslive.com/39050056" target="_blank" rel="noopener"><i class="fa-solid fa-person-chalkboard"></i>Slides</a>
+          <a href="https://slideslive.com/39050056" target="_blank" rel="noopener"><i class="fa-solid fa-play"></i>Video</a>
           </div>
         </div>
       </div>
@@ -621,11 +693,11 @@ footer a:hover { color: var(--primary); }
           <div class="pub-authors">L. Miklautz*, T. Klein*, K. Sidak*, C. Leiber, T. Lang, <span class="me">A. Shkabrii</span>, S. Tschiatschek, C. Plant</div>
           <div class="pub-venue">International Conference on Learning Representations (ICLR), 2025</div>
           <div class="pub-links">
-          <a href="https://openreview.net/pdf?id=r01fcKhzT5" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/Probabilistic-and-Interactive-ML/breaking-the-reclustering-barrier" target="_blank" rel="noopener">Code</a>
-          <a href="https://iclr.cc/media/PosterPDFs/ICLR%202025/28226.png?t=1744206577.557315" target="_blank" rel="noopener">Poster</a>
-          <a href="https://iclr.cc/media/iclr-2025/Slides/28226.pdf" target="_blank" rel="noopener">Slides</a>
-          <a href="https://slideslive.com/39034285" target="_blank" rel="noopener">Video</a>
+          <a href="https://openreview.net/pdf?id=r01fcKhzT5" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i>Paper</a>
+          <a href="https://github.com/Probabilistic-and-Interactive-ML/breaking-the-reclustering-barrier" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>Code</a>
+          <a href="https://iclr.cc/media/PosterPDFs/ICLR%202025/28226.png?t=1744206577.557315" target="_blank" rel="noopener"><i class="fa-regular fa-image"></i>Poster</a>
+          <a href="https://iclr.cc/media/iclr-2025/Slides/28226.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-person-chalkboard"></i>Slides</a>
+          <a href="https://slideslive.com/39034285" target="_blank" rel="noopener"><i class="fa-solid fa-play"></i>Video</a>
           </div>
         </div>
       </div>
@@ -637,7 +709,7 @@ footer a:hover { color: var(--primary); }
           <div class="pub-authors"><span class="me">A. Shkabrii</span>, T. Klein, L. Miklautz, S. Tschiatschek, C. Plant</div>
           <div class="pub-venue">Workshop on Spurious Correlation and Shortcut Learning (SCSL) and Workshop on Scaling Self-Improving Foundation Models (SSI-FM) @ International Conference on Learning Representations (ICLR), 2025</div>
           <div class="pub-links">
-          <a href="https://openreview.net/pdf?id=5nweoGtulA" target="_blank" rel="noopener">Paper</a>
+          <a href="https://openreview.net/pdf?id=5nweoGtulA" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i>Paper</a>
           </div>
         </div>
       </div>
@@ -649,7 +721,7 @@ footer a:hover { color: var(--primary); }
           <div class="pub-authors">L. Miklautz, <span class="me">A. Shkabrii</span>, C. Leiber, B. Tobias, B. Seidl, E. Weissensteiner, A. Rausch, C. B&ouml;hm, C. Plant</div>
           <div class="pub-venue">IEEE International Conference on Data Science and Advanced Analytics (DSAA), 2023</div>
           <div class="pub-links">
-          <a href="https://ieeexplore.ieee.org/document/10302468" target="_blank" rel="noopener">Paper</a>
+          <a href="https://ieeexplore.ieee.org/document/10302468" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i>Paper</a>
           </div>
         </div>
       </div>
@@ -659,7 +731,7 @@ footer a:hover { color: var(--primary); }
   <!-- ══════ CONTACT ══════ -->
   <section class="home-section" id="contact">
     <h2 class="section-heading">Contact</h2>
-    <p style="font-size:0.95rem; margin-bottom:16px;">I am always open to collaboration and happy to chat about research ideas. If you're working on something related or just want to connect, feel free to reach out!</p>
+    <p style="font-size:1rem; margin-bottom:16px;">I am always open to collaboration and happy to chat about research ideas. If you're working on something related or just want to connect, feel free to reach out!</p>
     <ul class="contact-list">
       <li><i class="fa-solid fa-envelope"></i> <a href="mailto:andrii.shkabrii@univie.ac.at">andrii.shkabrii@univie.ac.at</a></li>
       <li><i class="fa-solid fa-location-dot"></i> Vienna, Austria</li>
@@ -671,6 +743,12 @@ footer a:hover { color: var(--primary); }
 <footer>
   <p>&copy; 2026 Andrii Shkabrii</p>
 </footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
 
 <script>
 function toggleTheme() {
@@ -684,6 +762,46 @@ function toggleTheme() {
 document.querySelectorAll('.navbar-nav a').forEach(a => {
   a.addEventListener('click', () => document.getElementById('navMenu').classList.remove('open'));
 });
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+let lightboxOpener = null;
+
+function openLightbox(img) {
+  lightboxImg.src = img.dataset.full || img.src;
+  lightboxImg.alt = img.alt;
+  lightboxCaption.textContent = img.alt;
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  lightboxOpener = img;
+  lightboxClose.focus();
+}
+
+function closeLightbox() {
+  if (!lightbox.classList.contains('open')) return;
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (lightboxOpener) lightboxOpener.focus();
+}
+
+document.querySelectorAll('.pub-entry-thumb img').forEach(img => {
+  const hint = document.createElement('span');
+  hint.className = 'zoom-hint';
+  hint.setAttribute('aria-hidden', 'true');
+  img.after(hint);
+  img.tabIndex = 0;
+  img.setAttribute('role', 'button');
+  img.addEventListener('click', () => openLightbox(img));
+  img.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(img); }
+  });
+});
+lightbox.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 </body>
 </html>
